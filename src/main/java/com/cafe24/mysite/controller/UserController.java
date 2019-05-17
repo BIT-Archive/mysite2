@@ -27,9 +27,10 @@ public class UserController {
 	
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join(@ModelAttribute UserVo vo) {
+	public String join(@ModelAttribute UserVo vo, HttpSession session) {
 		
 		userService.join(vo);
+		session.setAttribute("authUser", vo);
 		
 		return "redirect:/";
 	}
@@ -86,8 +87,6 @@ public class UserController {
 		
 		return "user/update";
 	}
-	
-
 	
 	
 
