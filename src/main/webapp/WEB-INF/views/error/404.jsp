@@ -16,6 +16,7 @@
 	</p>
 </body>
 <script>
+	alert("404");
 	window.location = "${pageContext.servletContext.contextPath }";
 </script>
 </html>

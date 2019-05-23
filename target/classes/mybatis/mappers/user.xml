@@ -22,7 +22,7 @@
 		]]>
 	</select>
 	
-	<select id="getByNo" resultType="userVo" parameterType="Long">
+	<select id="getByNo" resultType="userVo" parameterType="long">
 	<![CDATA[
 	
 		select no, name, email, password, gender
@@ -32,6 +32,18 @@
 	
 	
 	</select>
+	
+	<select id="getByEmail" resultType="userVo" parameterType="string">
+	<![CDATA[
+	
+		select no, name, email, password, gender
+			from user
+		where email= #{email}
+	]]>
+	
+	
+	</select>
+	
 	
 	
 	<update id="update" parameterType="uservo">
