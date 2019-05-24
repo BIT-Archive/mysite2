@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.mysite.service.BoardService;
 import com.cafe24.mysite.vo.BoardVo;
-import com.cafe24.mysite.vo.Page;
 import com.cafe24.mysite.vo.UserVo;
 import com.cafe24.security.Auth;
 import com.cafe24.security.AuthUser;
@@ -26,8 +25,8 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@Autowired
-	private Page page;
+//	@Autowired
+//	private Page page;
 	
 	
 	@RequestMapping(value= {"/list", ""})
@@ -38,8 +37,6 @@ public class BoardController {
 		List<BoardVo> list = boardService.getList();
 		
 		
-		
-		model.addAttribute("page", page);
 		model.addAttribute("list", list);
 		model.addAttribute("authUser", authUser);
 		
