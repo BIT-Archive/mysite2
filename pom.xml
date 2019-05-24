@@ -165,6 +165,7 @@
 		</dependency>
 
 	</dependencies>
+	
 	<profiles>
 		<profile>
 			<id>production</id>
@@ -172,6 +173,12 @@
 				<resources>
 					<resource>
 						<directory>${project.basedir}/src/main/resources</directory>
+						<excludes>
+							<exclude>**/*.java</exclude>
+						</excludes>
+					</resource>
+					<resource>
+						<directory>${project.basedir}/src/main/production/resources</directory>
 						<excludes>
 							<exclude>**/*.java</exclude>
 						</excludes>
