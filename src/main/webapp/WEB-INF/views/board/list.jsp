@@ -42,7 +42,7 @@
 						<td>${post.hit }</td>
 						<td>${post.reg_date }</td>
 						<c:if test="${authUser.no eq post.user_no }">
-							<td><a href="/board/delete?no=${post.no }" class="del">삭제</a></td>
+							<td><a href="${pageContext.servletContext.contextPath }/board/delete?no=${post.no }" class="del">삭제</a></td>
 						</c:if>
 					</tr>
 					</c:forEach>

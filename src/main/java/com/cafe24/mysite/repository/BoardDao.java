@@ -46,12 +46,11 @@ public class BoardDao {
 
 	public BoardVo getGroup(int no) {
 		BoardVo vo = sqlSession.selectOne("board.getGroup", no);
-		
 		return vo;
 	}
 
 	public void delete(BoardVo boardVo) {
-		sqlSession.delete("board.delete", boardVo);
+		sqlSession.update("board.delete", boardVo);
 		
 	}
 

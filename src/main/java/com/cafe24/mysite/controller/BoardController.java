@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.mysite.service.BoardService;
 import com.cafe24.mysite.vo.BoardVo;
+import com.cafe24.mysite.vo.Page;
 import com.cafe24.mysite.vo.UserVo;
 import com.cafe24.security.Auth;
 import com.cafe24.security.AuthUser;
@@ -25,6 +26,9 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Autowired
+	private Page page;
+	
 	
 	@RequestMapping(value= {"/list", ""})
 	public String list(HttpSession session, Model model ) {
@@ -33,6 +37,9 @@ public class BoardController {
 		
 		List<BoardVo> list = boardService.getList();
 		
+		
+		
+		model.addAttribute("page", page);
 		model.addAttribute("list", list);
 		model.addAttribute("authUser", authUser);
 		
@@ -83,14 +90,16 @@ public class BoardController {
 						 Model model,
 						 @RequestParam(value="no", required=true) int no) {
 		
-		if( authUser == null || authUser.getNo() != no) {
+		BoardVo boardVo = boardService.getPost(no);
+		
+		if( authUser == null || authUser.getNo() != boardVo.getUser_no()) {
 			return "user/login";
 		}
 		
-		BoardVo vo = boardService.getPost(no);
+		
 		
 		model.addAttribute("authUser",authUser);
-		model.addAttribute("boardVo", vo);
+		model.addAttribute("boardVo", boardVo);
 		
 		return "board/modify";
 		
@@ -111,7 +120,7 @@ public class BoardController {
 	public String delete(@RequestParam(value="no" , required=true) int no,
 						HttpSession session) {
 		
-		
+		System.out.println("delete get");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
