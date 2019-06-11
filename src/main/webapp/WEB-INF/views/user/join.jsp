@@ -33,8 +33,7 @@
 								return;
 							}
 							//ajax 통신
-							$
-									.ajax({
+							$.ajax({
 										url : "${pageContext.servletContext.contextPath}/user/api/checkemail?email="
 												+ email,
 										type : "get",

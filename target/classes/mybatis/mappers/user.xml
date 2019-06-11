@@ -4,11 +4,16 @@
 
 
 	<insert id="insert" parameterType="uservo">
-	<![CDATA[
-		insert 
-			into user 
-		values(null, #{name}, #{email}, #{password}, #{gender}, now() )
+		<![CDATA[
+			insert 
+		      into member 
+		    values(#{no }, #{name }, #{email }, #{password }, #{gender }, now())	
 		]]>
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			<![CDATA[
+			select nextval('member_no_seq')
+			]]>
+		</selectKey>
 	
 	
 	</insert>
@@ -16,7 +21,7 @@
 	<select id="getByEmailAndPassword" parameterType="hashmap" resultType="uservo">
 		<![CDATA[
 			select no, name, email 
-				from user 
+				from member 
 			where email= #{email} and password= #{password}
 		
 		]]>
@@ -26,7 +31,7 @@
 	<![CDATA[
 	
 		select no, name, email, password, gender
-			from user
+			from member
 		where no= #{no}
 	]]>
 	
@@ -37,7 +42,7 @@
 	<![CDATA[
 	
 		select no, name, email, password, gender
-			from user
+			from member
 		where email= #{email}
 	]]>
 	
@@ -49,7 +54,7 @@
 	<update id="update" parameterType="uservo">
 	
 	<![CDATA[
-		update user 
+		update member 
 			set name=#{name}, email=#{email}, password=#{password}, gender=#{gender} 
 		where no=#{no}
 	]]>
